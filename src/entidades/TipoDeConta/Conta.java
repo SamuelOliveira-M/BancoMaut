@@ -1,4 +1,5 @@
-package entidades;
+
+package entidades.TipoDeConta;
 
 public class Conta {
     private static int contador;
@@ -27,7 +28,7 @@ public class Conta {
             return false;
         }
         else{
-            this.saldo=this.saldo - quantidade;
+            this.saldo -= quantidade;
             return true; 
         }
     }
@@ -36,15 +37,17 @@ public class Conta {
         this.saldo+=valor;
     }
 
-    public boolean transferir(Conta destino,double valor){
-        boolean retirou= this.saca(valor); 
-        if (retirou = false){
-            return false;
-        }
-        else{
-            destino.depositar(valor);
-            return true;
-        
+    public boolean transferir(Conta destino , double valorDebitado,double valorDepositado){
+
+            boolean retirou = this.saca(valorDebitado); 
+            if (retirou == false){
+                return false;
+            }
+            else{
+                destino.depositar(valorDepositado);
+                return true;
+            
+            }
         }
     }
-}
+

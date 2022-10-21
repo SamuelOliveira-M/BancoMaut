@@ -1,21 +1,34 @@
 package entidades;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+
+import entidades.TipoDeConta.ContaCorrente;
+import entidades.TipoDeConta.ContaPupanca; 
 
 public class Cliente {
     private String nome;
     private String cpf;
     private String DateDeNacimento;
+    private String email;
     private List <Endereco> endereco = new ArrayList<>();
-    private List<Conta>contas = new ArrayList<>();
-    
+    private List<ContaCorrente>contasCorrente = new ArrayList<>();
+    private List<ContaPupanca>contasPouoanca = new ArrayList<>();
 
-    public Cliente(String nome, String cpf, String dateDeNacimento) {
+    public Cliente(String nome, String cpf, String dateDeNacimento, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.DateDeNacimento = dateDeNacimento;
+        this.email = email;
         this.endereco.add(new Endereco(null,null,null));
-        this.contas.add(new Conta());
+    }
+
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNome() {
@@ -46,13 +59,22 @@ public class Cliente {
         return endereco;
     }
     
-    public List<Conta> getContas() {
-        return contas;
+    public List<ContaCorrente> getContaCorrentes() {
+        return contasCorrente;
     }
 
-    public void criarNovaConta(){
-        this.contas.add(new Conta());
+    public List<ContaPupanca> getContaPupancas() {
+        return contasPouoanca;
     }
+
+    public void criarContaCorrente(){
+        this.contasCorrente.add(new ContaCorrente());
+    }
+
+    public void criarContaPouponca(){
+        this.contasPouoanca.add(new ContaPupanca());
+    }
+
     public void novoEdereco(){
         this.endereco.add(new Endereco(null,null,null));
 
