@@ -1,12 +1,6 @@
 package app;
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 import javax.swing.JOptionPane;
-
-import org.apache.commons.mail.SimpleEmail;
 
 import entidades.*;
 import menus.*;
@@ -14,20 +8,6 @@ import menus.*;
 public class App {
     public static void main(String[] args) throws Exception {
     
-        List<Integer> opcao1 = new ArrayList<>();    
-        List<Integer> opcao2 = new ArrayList<>();
-        List<Integer> opcao3 = new ArrayList<>();
-        opcao1.add(1);
-        opcao1.add(2);
-        opcao1.add(3);
-        opcao2.add(1);
-        opcao2.add(2);
-        opcao2.add(3);
-        opcao2.add(4);
-        opcao2.add(5);
-        opcao2.add(6); 
-        opcao3.add(1);
-        opcao3.add(2);
         Notificacao notificacao = new Notificacao();
         Janelas meuMenu = new Janelas();
         Cliente cliente1 = new Cliente(null,null,null,null);
@@ -36,7 +16,7 @@ public class App {
         
         while (opcaoSelecionada!=2){
             
-            opcaoSelecionada = meuMenu.exibeMenuPrinciapal(opcao1);
+            opcaoSelecionada = meuMenu.exibeMenuPrinciapal();
             
             if(opcaoSelecionada == 0){ // Cadastro do Cliente
                 String nome = JOptionPane.showInputDialog("Digite seu nome: ");
@@ -47,7 +27,7 @@ public class App {
                 String bairro    = JOptionPane.showInputDialog("Digite o nome do Bairro: ");
                 String numCasa  = JOptionPane.showInputDialog("Digite o numero da sua casa: ");
                 
-                int tipodeContaEscolhida = meuMenu.exibirOpcoesdeContas(opcao3); 
+                int tipodeContaEscolhida = meuMenu.exibirOpcoesdeContas(); 
 
                 cliente1.setCpf(cpf);
                 cliente1.setNome(nome);
@@ -75,7 +55,7 @@ public class App {
 
                         if (opcaodeConta==0){ //Depositar algum valor na conta
                             double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Valor do deposito : "));
-                            int contaParaDeposito =  meuMenu.exibirOpcoesdeContas(opcao3);
+                            int contaParaDeposito =  meuMenu.exibirOpcoesdeContas();
                             
                             if (contaParaDeposito == 0 && cliente1.getContaPupancas().size()>0){
                                 int numContaParaDeposito =  Integer.parseInt(JOptionPane.showInputDialog("Você deseja depositar em qual conta: : "));
@@ -97,9 +77,9 @@ public class App {
                         }
                         // Poderia colocar o bloco de ifs abaixo em metudos ?
                         if (opcaodeConta==1){ // Tranferir algum valor de uma conta para outra.
-                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas(opcao3); 
+                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas(); 
                             int contaDebitada =  Integer.parseInt(JOptionPane.showInputDialog(" De qual conta você de seja tranferir : "));
-                            int tipoDecontaDestenatario =  meuMenu.exibirOpcoesdeContas(opcao3); 
+                            int tipoDecontaDestenatario =  meuMenu.exibirOpcoesdeContas(); 
                             int contaDestinada =  Integer.parseInt(JOptionPane.showInputDialog("Para qual conta você deseja tranferir : "));
                             double valorDetranferencia = Double.parseDouble(JOptionPane.showInputDialog("Valor da tranferencia : "));
 
@@ -122,7 +102,7 @@ public class App {
                         }
 
                         if (opcaodeConta==2){ // Sacar algum falor da conta
-                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas(opcao3);
+                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas();
                             int contaSelecinada =  Integer.parseInt(JOptionPane.showInputDialog("Informe de qual conta você deseja sacar :  "));
                             System.out.println(contaSelecinada);
                             double valorDeSaque= Double.parseDouble(JOptionPane.showInputDialog("Valor do Saque : "));
@@ -142,7 +122,7 @@ public class App {
                         
 
                         if (opcaodeConta==3){ // ver saldo
-                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas(opcao3);
+                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas();
                             int contaEscolhida =  Integer.parseInt(JOptionPane.showInputDialog("Qual conta vocé deseja ver o saldo : "));
                             
                             if (tipoDeconta==0){
@@ -158,7 +138,7 @@ public class App {
                         }
 
                         if (opcaodeConta == 4){ // Criar Conta
-                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas(opcao3);
+                            int tipoDeconta =  meuMenu.exibirOpcoesdeContas();
                             if(tipoDeconta == 0){
                                 cliente1.criarContaPouponca();
                                 JOptionPane.showMessageDialog(null,"Sua Conta Poupança foi Criada, Parabéns ! ");
